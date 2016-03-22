@@ -1,0 +1,18 @@
+ԭ��Ŀ��dq----dq
+1������Դ���ļ��У�ճ��һ�ݣ�Ŀ¼������dq
+2��xedkĿ¼���桰.project���ļ����޸���Ŀ��name��<name>dq</name>--��<name>dq</name>
+3��pom.xml�޸ģ�
+    <groupId>com.joker.dq</groupId>
+    <artifactId>dq</artifactId>
+    <db.name>dq</db.name>
+   -->
+   <groupId>com.joker.dq</groupId>
+   <artifactId>dq</artifactId>
+   <db.name>dq</db.name>
+4�������µ���ݿ⣺dq
+5����ԭ�е���ݿ⣬���л���ݵı����ļ��ָ���xedk����ݿ���
+   mysql -uroot -psa dq<dq_version1.10.sql
+6����sts���� import---��Existing Maven Projects---��ѡ��λ��xedk����ĿĿ¼---��Finsh
+7�����뻷����ctrl+h�滻���к���dq�ĵط�
+
+

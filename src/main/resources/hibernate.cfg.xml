@@ -1,0 +1,54 @@
+<!-- The following doctype doesn't work when offline, so default to old one, which does work.
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">-->
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="com.joker.dq.model.User"/>
+        <mapping class="com.joker.dq.model.Role"/>
+    	
+    	<mapping class="com.joker.dq.model.Enumeration"/>
+		<mapping class="com.joker.dq.model.EnumerationType"/>
+		<mapping class="com.joker.dq.model.Facility"/>
+		<mapping class="com.joker.dq.model.FacilityTransition"/>
+		<mapping class="com.joker.dq.model.Party"/>
+		<mapping class="com.joker.dq.model.PartyGroup"/>
+		<mapping class="com.joker.dq.model.PartyRelationship"/>
+		<mapping class="com.joker.dq.model.PartyRelationshipType"/>
+		<mapping class="com.joker.dq.model.PartyRole"/>
+		<mapping class="com.joker.dq.model.PartyUser"/>
+		<mapping class="com.joker.dq.model.Person"/>
+		<mapping class="com.joker.dq.model.Product"/>
+		<mapping class="com.joker.dq.model.ReapDtl"/>
+		<mapping class="com.joker.dq.model.RoleType"/>
+		<mapping class="com.joker.dq.model.SalePlan"/>
+		<mapping class="com.joker.dq.model.SalePlanDtl"/>
+		<mapping class="com.joker.dq.model.Shipment"/>
+		<mapping class="com.joker.dq.model.StatusItem"/>
+		<mapping class="com.joker.dq.model.StatusType"/>
+		<mapping class="com.joker.dq.model.StatusValidChange"/>
+		<mapping class="com.joker.dq.model.Uom"/>
+		<mapping class="com.joker.dq.model.UomConversion"/>
+		<mapping class="com.joker.dq.model.UomType"/>
+		<mapping class="com.joker.dq.model.Price"/>
+		<mapping class="com.joker.dq.model.ShipCar"/>
+		<mapping class="com.joker.dq.model.VillageInfo"/>
+        <mapping class="com.joker.dq.model.TbCarePeople"/>
+        <mapping class="com.joker.dq.model.TbProvide"/>
+        <mapping class="com.joker.dq.model.TbPeopleCare"/>
+        <mapping class="com.joker.dq.model.TbProvideDtl"/>
+        <mapping class="com.joker.dq.model.DqHui"/>
+        <mapping class="com.joker.dq.model.ApprovalProj"/>
+        <mapping class="com.joker.dq.model.TzDhbz"/>
+        <mapping class="com.joker.dq.model.TzDyzth"/>
+        <mapping class="com.joker.dq.model.TzFwqz"/>
+        <mapping class="com.joker.dq.model.TzGfmz"/>
+        <mapping class="com.joker.dq.model.TzHjmd"/>
+        <mapping class="com.joker.dq.model.TzZtjj"/>
+        <mapping class="com.joker.dq.model.CpDtl"/>
+        <mapping class="com.joker.dq.model.CpPositive"/>
+        <mapping class="com.joker.dq.model.CpCharge"/>
+    </session-factory>
+</hibernate-configuration>
