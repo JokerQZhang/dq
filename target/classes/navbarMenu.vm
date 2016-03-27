@@ -35,7 +35,9 @@
 
         #set ($count = 0)
         #foreach ($menuIt in $menu.components)
-            #displayNavbarMenu($menuIt, $count)
+        	#if ($displayer.isAllowed($menuIt))
+            	#displayNavbarMenu($menuIt, $count)
+            #end
         #end
 
         #if ($hasViewableChildren && ($count == $renderedChildren))
@@ -48,10 +50,20 @@
         #end
     #else
       </li>
-      #if ($menu.parent && $count == $menu.parent.components.size())
-      </ul>
+      #if ($menu.parent)
+      	#set ($validcount = 0)
+      	#foreach ($menuIt in $menu.parent.components)
+      		#if ($displayer.isAllowed($menuIt))
+      			#set($validcount = $validcount + 1)
+      		#end
+      	#end
+      	#if($count == $validcount)
+      		</ul>
+      	#end
       #end
     #end
+  #else
+    
   #end
 #end
 

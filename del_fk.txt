@@ -26,6 +26,7 @@ ALTER TABLE tb_provide_dtl DROP FOREIGN KEY FK_jr21;
 ALTER TABLE approval_proj DROP FOREIGN KEY FK_jr22;
 ALTER TABLE cp_dtl DROP FOREIGN KEY FK_jr23;
 ALTER TABLE cp_positive DROP FOREIGN KEY FK_jr24;
+ALTER TABLE petition_flow DROP FOREIGN KEY FK_jr25;
 
 3、执行 
 mvn appfuse:gen-model

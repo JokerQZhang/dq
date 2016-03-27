@@ -56,7 +56,7 @@
 	.headerNav .last{padding-left: 0;}
 	a{text-decoration:none;color:#959595}
 	#mainCnt{width:100%;height:600px;position:relative;clear:both;background-repeat:no-repeat;background-position:center top;}
-	.login{width:295px;height:460px;padding:13px 14px 15px;top:56px;left:50%;margin-left:90px;text-align:left;position:absolute;z-index:2;}
+	.login{width:295px;height:460px;padding:13px 14px 15px;top:200px;left:42%;text-align:left;position:absolute;z-index:2;}
 	.footers{height:65px;margin:0 auto;}
 	.footer-inner{width:1000px;height:63px;overflow:visible;margin:0 auto;color:#848585;position:relative;}
 	.footerLogo{top:11px;left:35px}
@@ -76,7 +76,7 @@
 	#mobtips_close{position:absolute}
     </style>
 </head>
-<body id="login">
+<body id="login" style="">
 <header class="headers">
 	<h1 class="headerLogo"><a href="http://www.kfqicaihong.com/" target="_blank" title="走进七彩虹"><img src="<c:url value='/images/toplogo.png'/>"></a></h1>
 	<nav class="headerNav">
@@ -93,11 +93,11 @@
 <section class="main" id="mainBg" style="background-color: rgb(229, 230, 230);">
 	<div class="main-inner" id="mainCnt" style="background-image: url(<c:url value='/images/loginmain.jpg'/>);">
 		<div id="loginBlock" class="login tab-2">
-			<div id="normalLoginTab" class="loginForm" style="display: block;background:#ffffff;">
+			<div id="normalLoginTab" class="loginForm" style="display: block;">
 				<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>"
 				    onsubmit="saveUsername(this);return validateForm(this)" class="form-signin" autocomplete="off">
 				    <h2 class="form-signin-heading">
-				        <fmt:message key="login.heading"/>
+				        &nbsp;
 				    </h2>
 				<c:if test="${param.error != null}">
 				    <div class="alert alert-danger alert-dismissable">
@@ -147,7 +147,7 @@ $(function(){
 	if(wheight>729){
 		paddingTop = (wheight-729)/2;
 	}
-	$("body").attr("style","padding-top:"+paddingTop+";background-color: #ffffff !important;");
+	$("body").attr("style","padding-top:"+paddingTop+";background-color: #ffffff !important;font-family:'Microsoft YaHei', arial !important;");
 })
 </script>
 </body>

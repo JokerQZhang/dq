@@ -14,7 +14,11 @@
         <s:textfield cssClass="form-control" key="partyGroup.address"/>
         <s:textfield cssClass="form-control" key="partyGroup.phone"/>
         <s:hidden cssClass="form-control" key="partyGroup.numEmployees"/>
-        <s:hidden cssClass="form-control" key="villageInfo.partyId"/>
+<%
+String aboutVillage = (String)request.getAttribute("aboutVillage");
+if(aboutVillage!=null && "yes".equals(aboutVillage)){
+%>
+		<s:hidden cssClass="form-control" key="villageInfo.partyId"/>
         <s:hidden cssClass="form-control" key="villageInfo.villageInfoId"/>
         <s:textfield cssClass="form-control" key="villageInfo.villageType"/>
         <s:textfield cssClass="form-control" key="villageInfo.peopleNum"/>
@@ -22,6 +26,10 @@
         <s:textfield cssClass="form-control" key="villageInfo.leaderNum"/>
         <s:textfield cssClass="form-control" key="villageInfo.personIncome"/>
         <s:textfield cssClass="form-control" key="villageInfo.groupIncome"/>
+<%
+}
+%>
+        
         <s:hidden cssClass="form-control" key="partyGroup.partyId"/>
 
         <div class="form-group">

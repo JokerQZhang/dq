@@ -225,7 +225,12 @@ public class PersonAction extends BaseAction implements Preparable {
         } else {
             person = new Person();
         }
-
+        String merriageSelector = super.getEnumerationSelector(11l, (person.getMarriage()==null||person.getMarriage().equals(""))?null:Long.valueOf(person.getMarriage()));
+    	String nationSelector = super.getEnumerationSelector(10l, (person.getNation()==null||person.getNation().equals(""))?null:Long.valueOf(person.getNation()));
+    	String educationSelector = super.getEnumerationSelector(12l, (person.getEducation()==null||person.getEducation().equals(""))?null:Long.valueOf(person.getEducation()));
+    	getRequest().setAttribute("merriageSelector", merriageSelector);
+    	getRequest().setAttribute("nationSelector", nationSelector);
+    	getRequest().setAttribute("educationSelector", educationSelector);
         return SUCCESS;
     }
 
@@ -307,6 +312,12 @@ public class PersonAction extends BaseAction implements Preparable {
     			//设置一下哈
     		}
     	}
+    	String merriageSelector = super.getEnumerationSelector(11l, (person.getMarriage()==null||person.getMarriage().equals(""))?null:Long.valueOf(person.getMarriage()));
+    	String nationSelector = super.getEnumerationSelector(10l, (person.getNation()==null||person.getNation().equals(""))?null:Long.valueOf(person.getNation()));
+    	String educationSelector = super.getEnumerationSelector(12l, (person.getEducation()==null||person.getEducation().equals(""))?null:Long.valueOf(person.getEducation()));
+    	getRequest().setAttribute("merriageSelector", merriageSelector);
+    	getRequest().setAttribute("nationSelector", nationSelector);
+    	getRequest().setAttribute("educationSelector", educationSelector);
     	getRequest().setAttribute("isNowXiang", isNowXiang);
     	return SUCCESS;
     }
@@ -380,8 +391,18 @@ public class PersonAction extends BaseAction implements Preparable {
     		person = personManager.get(personId);
         	Long partyId = person.getPartyId();
         	cpDtl = personManager.getCpDtlByPartyId(partyId);
+    	}else{
+    		person = new Person();
+    		cpDtl = new CpDtl();
     	}
-    	
+    	String merriageSelector = super.getEnumerationSelector(11l, (person.getMarriage()==null||person.getMarriage().equals(""))?null:Long.valueOf(person.getMarriage()));
+    	String nationSelector = super.getEnumerationSelector(10l, (person.getNation()==null||person.getNation().equals(""))?null:Long.valueOf(person.getNation()));
+    	String educationSelector = super.getEnumerationSelector(12l, (person.getEducation()==null||person.getEducation().equals(""))?null:Long.valueOf(person.getEducation()));
+    	String occupationSelector = super.getEnumerationSelector(13l, (cpDtl.getOccupation()==null||cpDtl.getOccupation().equals(""))?null:Long.valueOf(cpDtl.getOccupation()));
+    	getRequest().setAttribute("merriageSelector", merriageSelector);
+    	getRequest().setAttribute("nationSelector", nationSelector);
+    	getRequest().setAttribute("educationSelector", educationSelector);
+    	getRequest().setAttribute("occupationSelector", occupationSelector);
     	return SUCCESS;
     }
     public String saveDangPerson(){
@@ -470,8 +491,19 @@ public class PersonAction extends BaseAction implements Preparable {
         	Long partyId = person.getPartyId();
         	cpDtl = personManager.getCpDtlByPartyId(partyId);
         	cpPositive = personManager.getCpPositiveByPartyId(partyId);
+    	}else{
+    		person = new Person();
+    		cpDtl = new CpDtl();
     	}
     	
+    	String merriageSelector = super.getEnumerationSelector(11l, (person.getMarriage()==null||person.getMarriage().equals(""))?null:Long.valueOf(person.getMarriage()));
+    	String nationSelector = super.getEnumerationSelector(10l, (person.getNation()==null||person.getNation().equals(""))?null:Long.valueOf(person.getNation()));
+    	String educationSelector = super.getEnumerationSelector(12l, (person.getEducation()==null||person.getEducation().equals(""))?null:Long.valueOf(person.getEducation()));
+    	String occupationSelector = super.getEnumerationSelector(13l, (cpDtl.getOccupation()==null||cpDtl.getOccupation().equals(""))?null:Long.valueOf(cpDtl.getOccupation()));
+    	getRequest().setAttribute("merriageSelector", merriageSelector);
+    	getRequest().setAttribute("nationSelector", nationSelector);
+    	getRequest().setAttribute("educationSelector", educationSelector);
+    	getRequest().setAttribute("occupationSelector", occupationSelector);
     	return SUCCESS;
     }
     public String savePositivePerson(){

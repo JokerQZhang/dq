@@ -13,7 +13,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,CpChargeTests,TzZtjjTests,TzHjmdTests,TzGfmzTests,TzFwqzTests,TzDyzthTests,TzDhbzTests,ApprovalProjTests,DqHuiTests,TbProvideDtlTests,TbProvideTests,TbCarePeopleTests,FacilityTransitionTests,ShipmentTests,SalePlanDtlTests,SalePlanTests,ShipCarTests,PriceTests,ProductTests,FacilityTests,PersonTests,PartyGroupTests,RoleTypeTests,UomConversionTests,UomTests,UomTypeTests,PartyRelationshipTests,PartyRelationshipTypeTests,StatusValidChangeTests,StatusItemTests,StatusTypeTests,EnumerationTests,EnumerationTypeTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,PetitionFlowTests,PetitionTests,CpChargeTests,TzZtjjTests,TzHjmdTests,TzGfmzTests,TzFwqzTests,TzDyzthTests,TzDhbzTests,ApprovalProjTests,DqHuiTests,TbProvideDtlTests,TbProvideTests,TbCarePeopleTests,FacilityTransitionTests,ShipmentTests,SalePlanDtlTests,SalePlanTests,ShipCarTests,PriceTests,ProductTests,FacilityTests,PersonTests,PartyGroupTests,RoleTypeTests,UomConversionTests,UomTests,UomTypeTests,PartyRelationshipTests,PartyRelationshipTypeTests,StatusValidChangeTests,StatusItemTests,StatusTypeTests,EnumerationTests,EnumerationTypeTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -3256,7 +3256,191 @@
         </webtest>
     </target>
     <!--CpCharge-END-->
+    <!--Petition-START-->
+    <!-- runs petition-related tests -->
+    <target name="PetitionTests" depends="SearchPetitions,EditPetition,SavePetition,AddPetition,DeletePetition"
+            description="Call and executes all petition test cases (targets)">
+        <echo>Successfully ran all Petition UI tests!</echo>
+    </target>
+
+    <!-- Verify the petitions list screen displays without errors -->
+    <target name="SearchPetitions" description="Tests search for and displaying all petitions">
+        <webtest name="searchPetitions">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Petition link" url="/petitions"/>
+                <verifytitle description="we should see the petitionList title"
+                             text=".*${petitionList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the petitionList title"
+                             text=".*${petitionList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit petition screen displays without errors -->
+    <target name="EditPetition" description="Tests editing an existing Petition's information">
+        <webtest name="editPetition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Petition link" url="/editPetition?petitionId=-1"/>
+                <verifytitle description="we should see the petitionDetail title"
+                             text=".*${petitionDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a petition and then save -->
+    <target name="SavePetition" description="Tests editing and saving a petition">
+        <webtest name="savePetition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Petition link" url="/editPetition?petitionId=-1"/>
+                <verifytitle description="we should see the petitionDetail title"
+                             text=".*${petitionDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${petitionDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${petition.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Petition -->
+    <target name="AddPetition" description="Adds a new Petition">
+        <webtest name="addPetition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editPetition"/>
+                <verifytitle description="we should see the petitionDetail title"
+                             text=".*${petitionDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Petition List appears if save successful"
+                             text=".*${petitionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${petition.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing petition -->
+    <target name="DeletePetition" description="Deletes existing Petition">
+        <webtest name="deletePetition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Petition link" url="/editPetition?petitionId=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Petition List" text=".*${petitionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${petition.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--Petition-END-->
+    <!--PetitionFlow-START-->
+    <!-- runs petitionFlow-related tests -->
+    <target name="PetitionFlowTests" depends="SearchPetitionFlows,EditPetitionFlow,SavePetitionFlow,AddPetitionFlow,DeletePetitionFlow"
+            description="Call and executes all petitionFlow test cases (targets)">
+        <echo>Successfully ran all PetitionFlow UI tests!</echo>
+    </target>
+
+    <!-- Verify the petitionFlows list screen displays without errors -->
+    <target name="SearchPetitionFlows" description="Tests search for and displaying all petitionFlows">
+        <webtest name="searchPetitionFlows">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View PetitionFlow link" url="/petitionFlows"/>
+                <verifytitle description="we should see the petitionFlowList title"
+                             text=".*${petitionFlowList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the petitionFlowList title"
+                             text=".*${petitionFlowList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit petitionFlow screen displays without errors -->
+    <target name="EditPetitionFlow" description="Tests editing an existing PetitionFlow's information">
+        <webtest name="editPetitionFlow">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit PetitionFlow link" url="/editPetitionFlow?petitionFlowId=-1"/>
+                <verifytitle description="we should see the petitionFlowDetail title"
+                             text=".*${petitionFlowDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a petitionFlow and then save -->
+    <target name="SavePetitionFlow" description="Tests editing and saving a petitionFlow">
+        <webtest name="savePetitionFlow">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit PetitionFlow link" url="/editPetitionFlow?petitionFlowId=-1"/>
+                <verifytitle description="we should see the petitionFlowDetail title"
+                             text=".*${petitionFlowDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${petitionFlowDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${petitionFlow.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new PetitionFlow -->
+    <target name="AddPetitionFlow" description="Adds a new PetitionFlow">
+        <webtest name="addPetitionFlow">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editPetitionFlow"/>
+                <verifytitle description="we should see the petitionFlowDetail title"
+                             text=".*${petitionFlowDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="PetitionFlow List appears if save successful"
+                             text=".*${petitionFlowList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${petitionFlow.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing petitionFlow -->
+    <target name="DeletePetitionFlow" description="Deletes existing PetitionFlow">
+        <webtest name="deletePetitionFlow">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit PetitionFlow link" url="/editPetitionFlow?petitionFlowId=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display PetitionFlow List" text=".*${petitionFlowList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${petitionFlow.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--PetitionFlow-END-->
 </project>
+
+
 
 
 

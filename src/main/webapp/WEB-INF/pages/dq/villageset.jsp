@@ -104,11 +104,11 @@
 		//$("#sss").modal('show');
 	})
 	function modifyCun(){
-		if(selectedGroupId==""||isNowXiang=="xiang"){
+		if(selectedGroupId==""){
 			alert("请先选择需要修改的村信息!");
 			return false;
 		}
-		ajaxLoadDaialog({url:'<c:url value='/dqd/editPartyGroupCun'/>',title:'<fmt:message key="partyGroupDetail.heading"/>',width:600,height:500,beforeDialogOpen:undefined,afterDialogOpen:afterPartyGroupFormOpen,data:{partyId:selectedGroupId,method:'Add',from:'list'}});
+		ajaxLoadDaialog({url:'<c:url value='/dqd/editPartyGroupCun'/>',title:'<fmt:message key="partyGroupDetail.heading"/>',width:600,height:500,beforeDialogOpen:undefined,afterDialogOpen:afterPartyGroupFormOpen,data:{isNowXiang:isNowXiang,partyId:selectedGroupId,method:'Modify',from:'list'}});
 	}
 	function addPeople(){
 		if(selectedGroupId==""){
@@ -128,20 +128,5 @@
 				$("#dtlinfo").html(data);
 			}
 		});
-	}
-	function loadingEffect(loadingarea){
-		//组织效果叠加
-		$(loadingarea).find("div[role='jokerloading']").remove();
-		var mask = $("<div role='jokerloading' class='modal-backdrop fade in' align='center'><img src='/images/waiting.gif'></div>");
-		
-		var height = $(loadingarea).outerHeight();
-		var width = $(loadingarea).outerWidth();
-		$(mask).width(width);
-		$(mask).height(height);
-		$(mask).css("line-height",height+"px");
-		$(loadingarea).append($(mask));
-	}
-	function loadingEffectOff(loadingarea){
-		$(loadingarea).find("div[role='jokerloading']").remove();
 	}
 	</script>

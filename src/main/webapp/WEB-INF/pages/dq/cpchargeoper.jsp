@@ -3,8 +3,8 @@
 <%@ include file="/common/taglibs.jsp" %>
 
 <head>
-    <title><fmt:message key="activeUsers.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
+    <title><fmt:message key="menu.partymgn"/></title>
+    <meta name="menu" content="PartyMgnMenu"/>
 </head>
 	<div class="col-sm-12">
 		<div class="panel panel-default">

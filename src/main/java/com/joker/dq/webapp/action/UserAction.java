@@ -270,5 +270,9 @@ public class UserAction extends BaseAction implements Preparable {
         }
         return SUCCESS;
     }
-
+    
+    public String homeProfile(){
+    	super.getCurrentPerson();
+    	return SUCCESS;
+    }
 }

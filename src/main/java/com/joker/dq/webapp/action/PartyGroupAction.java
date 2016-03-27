@@ -328,6 +328,14 @@ public class PartyGroupAction extends BaseAction implements Preparable {
     			villageInfo = (VillageInfo)obs[1];
     		}
     	}
+    	String isNowXiang = getRequest().getParameter("isNowXiang");
+    	String method = getRequest().getParameter("method");
+    	if(isNowXiang!=null && "xiang".equals(isNowXiang) && method!=null && "Add".equals(method)){
+    		getRequest().setAttribute("aboutVillage", "yes");
+    	}
+    	if(isNowXiang!=null && "".equals(isNowXiang) && method!=null && "Modify".equals(method)){
+    		getRequest().setAttribute("aboutVillage", "yes");
+    	}
     	return SUCCESS;
     }
     public String savePartyGroupCun() throws Exception{
@@ -588,7 +596,7 @@ public class PartyGroupAction extends BaseAction implements Preparable {
     	Map<String,String> conditon = new HashMap<String,String>();
     	//条件查询不考虑树形结构
     	if(query!=null && !"".equals(query)){
-    		conditon.put("roleTypeId", "6");
+    		conditon.put("roleTypeId", "1");
     		conditon.put("groupName", query);
     		partyGroups = partyGroupManager.searchByCondition(conditon);
     		getRequest().setAttribute("showForm", "showData");
@@ -601,7 +609,7 @@ public class PartyGroupAction extends BaseAction implements Preparable {
     			getRequest().setAttribute("isRoot", "isRoot");
     		}
     		conditon.put("parentId", parentId);
-    		conditon.put("partyRelationshipTypeId", "5");
+    		conditon.put("partyRelationshipTypeId", "1");
     	}
     	partyGroups = partyGroupManager.searchByCondition(conditon);
     	

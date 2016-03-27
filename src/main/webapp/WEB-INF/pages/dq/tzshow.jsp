@@ -2,8 +2,8 @@
 <%@ include file="/common/taglibs.jsp" %>
 
 <head>
-    <title><fmt:message key="activeUsers.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
+    <title><fmt:message key="menu.partymgn"/></title>
+    <meta name="menu" content="PartyMgnMenu"/>
     <style type="text/css">
 .tree {
     min-height:20px;

@@ -17,6 +17,7 @@ com\joker\dq\util\TimestampConverter.class
 com\joker\dq\dao\EnumerationDao.class
 com\joker\dq\service\PersonManager.class
 com\joker\dq\service\impl\UserManagerImpl.class
+com\joker\dq\model\PetitionFlow.class
 com\joker\dq\service\StatusValidChangeManager.class
 com\joker\dq\dao\PartyRelationshipDao.class
 com\joker\dq\dao\GenericDao.class
@@ -31,7 +32,9 @@ com\joker\dq\model\Shipment.class
 com\joker\dq\service\impl\RoleTypeManagerImpl.class
 com\joker\dq\service\impl\LookupManagerImpl.class
 com\joker\dq\service\SalePlanDtlManager.class
+com\joker\dq\service\PetitionManager.class
 com\joker\dq\model\VillageInfo.class
+com\joker\dq\service\impl\PetitionFlowManagerImpl.class
 com\joker\dq\service\UomTypeManager.class
 com\joker\dq\webapp\action\PartyRelationshipTypeAction.class
 com\joker\dq\service\impl\ShipmentManagerImpl.class
@@ -53,6 +56,7 @@ com\joker\dq\model\Price.class
 com\joker\dq\model\PartyRelationshipType.class
 com\joker\dq\dao\hibernate\FacilityTransitionDaoHibernate.class
 com\joker\dq\dao\StatusValidChangeDao.class
+com\joker\dq\dao\PetitionFlowDao.class
 com\joker\dq\webapp\action\FacilityTransitionAction.class
 com\joker\dq\webapp\action\PriceAction.class
 com\joker\dq\service\SalePlanManager.class
@@ -92,6 +96,7 @@ com\joker\dq\dao\hibernate\UserDaoHibernate.class
 com\joker\dq\dao\hibernate\ApprovalProjDaoHibernate.class
 com\joker\dq\service\impl\PasswordTokenManagerImpl.class
 com\joker\dq\model\TbProvide.class
+com\joker\dq\dao\hibernate\PetitionDaoHibernate.class
 com\joker\dq\dao\hibernate\HibernateSearchTools.class
 com\joker\dq\service\UserService.class
 com\joker\dq\service\UserManager.class
@@ -108,6 +113,7 @@ com\joker\dq\dao\ShipmentDao.class
 com\joker\dq\model\FacilityTransition.class
 com\joker\dq\webapp\filter\LocaleRequestWrapper.class
 com\joker\dq\service\impl\FacilityTransitionManagerImpl.class
+com\joker\dq\model\Petition.class
 com\joker\dq\webapp\action\SalePlanDtlAction.class
 com\joker\dq\dao\hibernate\TzZtjjDaoHibernate.class
 com\joker\dq\webapp\filter\LocaleFilter.class
@@ -121,6 +127,7 @@ com\joker\dq\dao\UserDao.class
 com\joker\dq\dao\SalePlanDao.class
 com\joker\dq\dao\hibernate\UomTypeDaoHibernate.class
 com\joker\dq\service\impl\ApprovalProjManagerImpl.class
+com\joker\dq\dao\PetitionDao.class
 com\joker\dq\service\TbCarePeopleManager.class
 com\joker\dq\util\ConvertUtil.class
 com\joker\dq\service\impl\TbProvideDtlManagerImpl.class
@@ -129,7 +136,9 @@ com\joker\dq\service\impl\SalePlanManagerImpl.class
 com\joker\dq\webapp\action\TzGfmzAction.class
 com\joker\dq\webapp\action\ShipCarAction.class
 com\joker\dq\model\ApprovalProj.class
+com\joker\dq\webapp\action\PetitionFlowAction.class
 com\joker\dq\webapp\action\DqHuiAction.class
+com\joker\dq\webapp\action\PetitionAction.class
 com\joker\dq\service\FacilityManager.class
 com\joker\dq\webapp\action\CpChargeAction.class
 com\joker\dq\service\impl\TzGfmzManagerImpl.class
@@ -166,6 +175,7 @@ com\joker\dq\model\Uom.class
 com\joker\dq\service\impl\PasswordTokenManager.class
 com\joker\dq\service\impl\CpChargeManagerImpl.class
 com\joker\dq\dao\hibernate\SalePlanDaoHibernate.class
+com\joker\dq\service\impl\PetitionManagerImpl.class
 com\joker\dq\dao\hibernate\CpChargeDaoHibernate.class
 com\joker\dq\webapp\taglib\OutTag.class
 com\joker\dq\service\impl\StatusTypeManagerImpl.class
@@ -219,6 +229,7 @@ com\joker\dq\dao\hibernate\TzHjmdDaoHibernate.class
 com\joker\dq\Constants.class
 com\joker\dq\service\RoleTypeManager.class
 com\joker\dq\dao\hibernate\ProductDaoHibernate.class
+com\joker\dq\service\PetitionFlowManager.class
 com\joker\dq\webapp\action\TzZtjjAction.class
 com\joker\dq\webapp\jsp\EscapeXmlELResolverListener.class
 com\joker\dq\model\TzGfmz.class
@@ -262,6 +273,7 @@ com\joker\dq\model\Party.class
 com\joker\dq\webapp\action\TzFwqzAction.class
 com\joker\dq\dao\StatusItemDao.class
 com\joker\dq\service\impl\GenericManagerImpl.class
+com\joker\dq\dao\hibernate\PetitionFlowDaoHibernate.class
 com\joker\dq\webapp\taglib\ConstantsTei.class
 com\joker\dq\webapp\action\StatusItemAction.class
 com\joker\dq\dao\hibernate\TbCarePeopleDaoHibernate.class

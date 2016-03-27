@@ -21,7 +21,7 @@ if(request.getAttribute("showForm") == null){
 		        <button id="button.search" class="btn btn-default btn-sm" type="submit">
 		            <i class="icon-search"></i> <fmt:message key="button.search"/>
 		        </button>
-		        <a class="btn btn-primary btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/dqd/editPartyGroupCun'/>',title:'<fmt:message key="partyGroupDetail.heading"/>',width:600,height:500,beforeDialogOpen:beforePartyGroupFormOpen,afterDialogOpen:afterPartyGroupFormOpen,data:{method:'Add',from:'list'}})" >
+		        <a class="btn btn-primary btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/dqd/editPartyGroupCun'/>',title:'<fmt:message key="partyGroupDetail.heading"/>',width:600,height:500,beforeDialogOpen:beforePartyGroupFormOpen,afterDialogOpen:afterPartyGroupFormOpen,data:{isNowXiang:isNowXiang,method:'Add',from:'list'}})" >
 		            <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/>
 		        </a>
 	        </div>

@@ -547,3 +547,7 @@ alter table shipment drop foreign key FK_jr15;
 alter table status_item drop foreign key FK_jr2;
 alter table uom drop foreign key FK_jr1;
 alter table village_info foreign key FK_jr16;
+
+
+INSERT INTO role (description,NAME) VALUES('党群管理员','ROLE_CP_ADMIN');
+INSERT INTO role (description,NAME) VALUES('党群操作员','ROLE_CP_USER');

@@ -4,8 +4,8 @@
 if(request.getAttribute("showForm") == null){
 %>
 	<head>
-	    <title><fmt:message key="dqHuiList.title"/></title>
-	    <meta name="menu" content="DqHuiMenu"/>
+	    <title><fmt:message key="menu.partymgn"/></title>
+    <meta name="menu" content="PartyMgnMenu"/>
 	</head>
     <form method="post" action="${ctx}/dqHuies" id="dqHuiSearchForm" class="form-inline" onsubmit="return ajaxSubmitFormUpdateAreas(this,$('#dqHuiSearchFormDiv'));">
 	    <input type="hidden" name="page.pageSize"/>

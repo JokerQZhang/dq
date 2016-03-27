@@ -6,17 +6,44 @@
     <Menus>
         <Menu name="Home" title="home.title" page="/home" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/editProfile" roles="ROLE_ADMIN,ROLE_USER"/>
-        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
-            <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
-            <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
-            <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
-            <Item name="FileUpload" title="menu.selectFile" page="/selectFile"/>
-            <Item name="Enumeration" title="menu.enumeration" page="/admin/enumeration"/>
-            <Item name="Status" title="menu.status" page="/admin/status"/>
-            <Item name="RoleType" title="roleTypeList.title" page="/admin/roleTypes"/>
-            <Item name="PartyRelationshipTypeMenu" title="partyRelationshipTypeList.title" page="/admin/partyRelationshipTypes"/>
-            <Item name="Uom" title="uom.title" page="/admin/uom"/>
-            <Item name="Organization" title="organization.title" page="/admin/organization"/>
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN,ROLE_CP_ADMIN">
+            <Item name="ViewUsers" title="menu.admin.users" page="/admin/users" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="FileUpload" title="menu.selectFile" page="/selectFile" roles="ROLE_ADMIN"/>
+            <Item name="Enumeration" title="menu.enumeration" page="/admin/enumeration" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="Status" title="menu.status" page="/admin/status" roles="ROLE_ADMIN"/>
+            <Item name="RoleType" title="roleTypeList.title" page="/admin/roleTypes" roles="ROLE_ADMIN"/>
+            <Item name="PartyRelationshipTypeMenu" title="partyRelationshipTypeList.title" page="/admin/partyRelationshipTypes" roles="ROLE_ADMIN"/>
+            <Item name="Uom" title="uom.title" page="/admin/uom" roles="ROLE_ADMIN"/>
+            <Item name="Organization" title="organization.title" page="/admin/organization" roles="ROLE_ADMIN"/>
+            <Item name="villageset" title="villageset.title" page="/dq/villageset" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="zbgl" title="zbgl.title" page="/dq/zhibuset" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="unitset" title="unitset.title" page="/dq/unitset" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+        </Menu>
+        
+        <Menu name="PartyMgnMenu" title="menu.partymgn" description="Party Mng Menu" roles="ROLE_CP_ADMIN,ROLE_CP_USER">
+        	<Item name="wghgl" title="wghgl.title" page="/facility/facilityfill" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="partymng" title="partymng.title" page="/dq/cpset" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="dysj" title="dysj.title" page="/dq/tzshow" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="tztb" title="tztb.title" page="/dq/tztb" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="skyh" title="skyh.title" page="/dq/dqHuies" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="cpcharge" title="cpcharge.title" page="/dq/cpChargeSearch" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="cpopercharge" title="cpOperCharge.title" page="/dq/cpChargeOper" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="zzgxzj" title="zzgxzj.title" page="/facility/facilityfill" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        </Menu>
+        <Menu name="ForPeopleMenu" title="menu.forpeople" description="For People Menu" roles="ROLE_CP_USER,ROLE_CP_ADMIN">
+        	<Item name="ldbz" title="ldbz.title" page="/facility/facilityfill" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="mzyf" title="mzyf.title" page="/dq/mzyfset" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="mzyfprovide" title="mzyfprivide.title" page="/dq/mzyfprovide" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="spxmfw" title="spxmfw.title" page="/dq/approvalsearch" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        </Menu>
+        <Menu name="SunShineMenu" title="menu.sunshine" roles="ROLE_CP_USER,ROLE_CP_ADMIN">
+        	<Item name="PetitionMenu" title="menu.petition" page="/petitions"/>
+        </Menu>
+        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER">
+        	<Item name="UserMenu" title="menu.user" page="/editProfile"/>
+        	<Item name="Logout" title="user.logout" page="/logout"/>
         </Menu>
         <Menu name="FacilityMgnMenu" title="menu.facilitymgn" description="Facility Mgn Menu" page="/facility/facilities" roles="ROLE_AA">
         	<Item name="FacilitySet" title="menu.facilityset" page="/facility/facilityset"/>
@@ -28,29 +55,8 @@
         	<Item name="ShipmentSet" title="shipmentset.title" page="/facility/shipmentset"/>
         	<Item name="FacilityFil" title="facilityfill.title" page="/facility/facilityfill"/>
         </Menu>
-        <Menu name="PartyMgnMenu" title="menu.partymgn" description="Party Mng Menu" role="ROLE_ADMIN">
-			<Item name="villageset" title="villageset.title" page="/dq/villageset"/>
-        	<Item name="wghgl" title="wghgl.title" page="/facility/facilityfill"/>
-        	<Item name="partymng" title="partymng.title" page="/dq/cpset"/>
-        	<Item name="dysj" title="dysj.title" page="/dq/tzshow"/>
-        	<Item name="tztb" title="tztb.title" page="/dq/tztb"/>
-        	<Item name="zbgl" title="zbgl.title" page="/dq/zhibuset"/>
-        	<Item name="skyh" title="skyh.title" page="/dq/dqHuies"/>
-        	<Item name="cpcharge" title="cpcharge.title" page="/dq/cpChargeSearch"/>
-        	<Item name="cpopercharge" title="cpOperCharge.title" page="/dq/cpChargeOper"/>
-        	<Item name="zzgxzj" title="zzgxzj.title" page="/facility/facilityfill"/>
-        </Menu>
-        <Menu name="ForPeopleMenu" title="menu.forpeople" description="For People Menu" role="ROLE_ADMIN">
-        	<Item name="ldbz" title="ldbz.title" page="/facility/facilityfill"/>
-        	<Item name="mzyf" title="mzyf.title" page="/dq/mzyfset"/>
-        	<Item name="mzyfprovide" title="mzyfprivide.title" page="/dq/mzyfprovide"/>
-        	<Item name="unitset" title="unitset.title" page="/dq/unitset"/>
-        	<Item name="spxmfw" title="spxmfw.title" page="/dq/approvalsearch"/>
-        </Menu>
-        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER">
-        	<Item name="UserMenu" title="menu.user" page="/editProfile"/>
-        	<Item name="Logout" title="user.logout" page="/logout"/>
-        </Menu>
-        
+
     </Menus>
+
+
 </MenuConfig>

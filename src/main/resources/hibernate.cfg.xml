@@ -50,5 +50,7 @@
         <mapping class="com.joker.dq.model.CpDtl"/>
         <mapping class="com.joker.dq.model.CpPositive"/>
         <mapping class="com.joker.dq.model.CpCharge"/>
+        <mapping class="com.joker.dq.model.Petition"/>
+        <mapping class="com.joker.dq.model.PetitionFlow"/>
     </session-factory>
 </hibernate-configuration>

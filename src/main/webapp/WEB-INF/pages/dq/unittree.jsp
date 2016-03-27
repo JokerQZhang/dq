@@ -21,9 +21,6 @@ if(request.getAttribute("showForm") == null){
 		        <button id="button.search" class="btn btn-default btn-sm" type="submit">
 		            <i class="icon-search"></i> <fmt:message key="button.search"/>
 		        </button>
-		        <a class="btn btn-primary btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/dqd/editPartyGroupUnit'/>',title:'<fmt:message key="partyGroupDetail.heading"/>',width:600,height:500,beforeDialogOpen:beforePartyGroupFormOpen,afterDialogOpen:afterPartyGroupFormOpen,data:{method:'Add',from:'list'}})" >
-		            <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/>
-		        </a>
 	        </div>
 	    </div>
     </form>
@@ -47,7 +44,7 @@ if(request.getAttribute("showForm") == null){
 		}
 		function barLeafClick(spanItem, parentId, isXiang){
 			//开合子元素
-	    	var children = $(spanItem).parent('li.parent_li').find(' > ul > li');
+/* 	    	var children = $(spanItem).parent('li.parent_li').find(' > ul > li');
 	        if (children.is(":visible")) {
 	            children.hide('fast');
 	            $(spanItem).attr('title', 'Expand this branch').find(' > i').addClass('glyphicon-plus-sign').removeClass('glyphicon-minus-sign');
@@ -68,7 +65,7 @@ if(request.getAttribute("showForm") == null){
 	          			}
 	          		});
 	          	}
-	        }
+	        } */
 	        //选中效果
 	        var nowClass = $(spanItem).attr("class");
 	        if(nowClass=="btn-success"){
@@ -117,7 +114,7 @@ if(request.getAttribute("showForm") == null){
 			<ul>
 				<c:forEach items="${partyGroups}" var="partyGroup">
 				<li class="parent_li">
-					<span onclick="barLeafClick(this,'${partyGroup.partyId}','xiang')"><i class="glyphicon glyphicon-plus-sign"></i> ${partyGroup.groupName}
+					<span onclick="barLeafClick(this,'${partyGroup.partyId}','xiang')"><i class="glyphicon glyphicon-leaf"></i> ${partyGroup.groupName}
 				</li>
 				</c:forEach>
 			</ul>

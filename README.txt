@@ -61,3 +61,5 @@ mvn appfuse:gen -Dentity=TzGfmz
 mvn appfuse:gen -Dentity=TzHjmd
 mvn appfuse:gen -Dentity=TzZtjj
 mvn appfuse:gen -Dentity=CpCharge
+mvn appfuse:gen -Dentity=Petition
+mvn appfuse:gen -Dentity=PetitionFlow

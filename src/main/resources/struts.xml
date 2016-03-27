@@ -72,7 +72,7 @@
             <exception-mapping exception="org.springframework.dao.DataAccessException" result="dataAccessFailure"/>
         </global-exception-mappings>
 
-        <action name="home">
+        <action name="home" class="userAction" method="homeProfile">
             <result name="success">/WEB-INF/pages/home.jsp</result>
         </action>
 
@@ -793,7 +793,55 @@
         -->
         <!--CpChargeAction-END-->
 
+        <!--PetitionAction-START-->
+        <action name="petitions" class="com.joker.dq.webapp.action.PetitionAction" method="list">
+            <result>/WEB-INF/pages/petitionList.jsp</result>
+        </action>
+
+        <action name="editPetition" class="com.joker.dq.webapp.action.PetitionAction" method="edit">
+            <result>/WEB-INF/pages/petitionForm.jsp</result>
+            <result name="error">/WEB-INF/pages/petitionList.jsp</result>
+        </action>
+
+        <action name="savePetition" class="com.joker.dq.webapp.action.PetitionAction" method="save">
+            <result name="input">/WEB-INF/pages/petitionForm.jsp</result>
+            <result name="cancel" type="redirectAction">petitions</result>
+            <result name="delete" type="redirectAction">petitions</result>
+            <result name="success" type="redirectAction">petitions</result>
+        </action>
+        <!--
+        <action name="petitions">
+            <result>/WEB-INF/pages/petitionList.jsp</result>
+        </action>
+        -->
+        <!--PetitionAction-END-->
+
+        <!--PetitionFlowAction-START-->
+        <action name="petitionFlows" class="com.joker.dq.webapp.action.PetitionFlowAction" method="list">
+            <result>/WEB-INF/pages/petitionFlowList.jsp</result>
+        </action>
+
+        <action name="editPetitionFlow" class="com.joker.dq.webapp.action.PetitionFlowAction" method="edit">
+            <result>/WEB-INF/pages/petitionFlowForm.jsp</result>
+            <result name="error">/WEB-INF/pages/petitionFlowList.jsp</result>
+        </action>
+
+        <action name="savePetitionFlow" class="com.joker.dq.webapp.action.PetitionFlowAction" method="save">
+            <result name="input">/WEB-INF/pages/petitionFlowForm.jsp</result>
+            <result name="cancel" type="redirectAction">petitionFlows</result>
+            <result name="delete" type="redirectAction">petitionFlows</result>
+            <result name="success" type="redirectAction">petitionFlows</result>
+        </action>
+        <!--
+        <action name="petitionFlows">
+            <result>/WEB-INF/pages/petitionFlowList.jsp</result>
+        </action>
+        -->
+        <!--PetitionFlowAction-END-->
+
         <!-- Add additional actions here -->
+
+
 
 
 
