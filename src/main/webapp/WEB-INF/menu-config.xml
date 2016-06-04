@@ -3,6 +3,7 @@
     <Displayers>
         <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
     </Displayers>
+    
     <Menus>
         <Menu name="Home" title="home.title" page="/home" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/editProfile" roles="ROLE_ADMIN,ROLE_USER"/>
@@ -19,27 +20,35 @@
             <Item name="Organization" title="organization.title" page="/admin/organization" roles="ROLE_ADMIN"/>
             <Item name="villageset" title="villageset.title" page="/dq/villageset" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
             <Item name="zbgl" title="zbgl.title" page="/dq/zhibuset" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
-            <Item name="unitset" title="unitset.title" page="/dq/unitset" roles="ROLE_ADMIN,ROLE_CP_ADMIN"/>
+            <Item name="tkgl" title="tkgl.title" page="/dq/testQuestions" roles="ROLE_ADMIN"/>
+            <Item name="sjsz" title="sjsz.title" page="/dq/testPapers" roles="ROLE_ADMIN"/>
+            <Item name="ksxx" title="ksxx.title" page="/dq/answerers" roles="ROLE_ADMIN"/>
+            <Item name="unitset" title="unitset.title" page="/dq/unitset" roles="ROLE_ADMIN"/>
         </Menu>
         
-        <Menu name="PartyMgnMenu" title="menu.partymgn" description="Party Mng Menu" roles="ROLE_CP_ADMIN,ROLE_CP_USER">
+        <Menu name="PartyMgnMenu" title="menu.partymgn" description="Party Mng Menu" roles="ROLE_CP_ADMIN,ROLE_CP_USER,ROLE_VI_USER">
         	<Item name="wghgl" title="wghgl.title" page="/facility/facilityfill" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
         	<Item name="partymng" title="partymng.title" page="/dq/cpset" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
-        	<Item name="dysj" title="dysj.title" page="/dq/tzshow" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
-        	<Item name="tztb" title="tztb.title" page="/dq/tztb" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
-        	<Item name="skyh" title="skyh.title" page="/dq/dqHuies" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="dysj" title="dysj.title" page="/dq/tzshow" roles="ROLE_CP_USER,ROLE_CP_ADMIN,ROLE_VI_USER"/>
+        	<Item name="tztb" title="tztb.title" page="/dq/tztb" roles="ROLE_VI_USER"/>
+        	<Item name="skyh" title="skyh.title" page="/dq/dqHuies" roles="ROLE_CP_USER,ROLE_CP_ADMIN,ROLE_VI_USER"/>
         	<Item name="cpcharge" title="cpcharge.title" page="/dq/cpChargeSearch" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
         	<Item name="cpopercharge" title="cpOperCharge.title" page="/dq/cpChargeOper" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
         	<Item name="zzgxzj" title="zzgxzj.title" page="/facility/facilityfill" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="dyks" title="dyks.title" page="/dqd/examination" roles="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER,ROLE_CP_ADMIN,ROLE_CP_USER,ROLE_VI_USER,ROLE_SS_USER"/>
         </Menu>
-        <Menu name="ForPeopleMenu" title="menu.forpeople" description="For People Menu" roles="ROLE_CP_USER,ROLE_CP_ADMIN">
+        <Menu name="ForPeopleMenu" title="menu.forpeople" description="For People Menu" roles="ROLE_CP_USER,ROLE_CP_ADMIN,ROLE_VI_USER">
         	<Item name="ldbz" title="ldbz.title" page="/facility/facilityfill" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
         	<Item name="mzyf" title="mzyf.title" page="/dq/mzyfset" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
         	<Item name="mzyfprovide" title="mzyfprivide.title" page="/dq/mzyfprovide" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
-        	<Item name="spxmfw" title="spxmfw.title" page="/dq/approvalsearch" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="spxmfw" title="spxmfw.title" page="/dq/approvalsearch" roles="ROLE_CP_USER,ROLE_CP_ADMIN,ROLE_VI_USER"/>
         </Menu>
-        <Menu name="SunShineMenu" title="menu.sunshine" roles="ROLE_CP_USER,ROLE_CP_ADMIN">
-        	<Item name="PetitionMenu" title="menu.petition" page="/petitions"/>
+        <Menu name="SunShineMenu" title="menu.sunshine" roles="ROLE_CP_USER,ROLE_CP_ADMIN,ROLE_SS_USER">
+        	<Item name="PetitionMenu" title="menu.petition" page="/dq/petitions?type=a" roles="ROLE_SS_USER"/>
+        	<Item name="petitionapproval" title="menu.petitionapproval" page="/dq/petitions?type=b" roles="ROLE_SS_USER"/>
+        	<Item name="petitionresolve" title="menu.petitionresolve" page="/dq/petitions?type=c" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="petitionend" title="menu.petitionend" page="/dq/petitions?type=d" roles="ROLE_CP_USER,ROLE_CP_ADMIN"/>
+        	<Item name="petitionsearch" title="menu.petitionsearch" page="/dq/petitions?type=e" roles="ROLE_CP_USER,ROLE_CP_ADMIN,ROLE_SS_USER"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER">
         	<Item name="UserMenu" title="menu.user" page="/editProfile"/>
@@ -57,6 +66,9 @@
         </Menu>
 
     </Menus>
+
+
+
 
 
 </MenuConfig>

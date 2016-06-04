@@ -7,7 +7,7 @@
 </head>
 <body class="home">
 <blockquote>
-<p>尊敬的<mark> <em>${currentPartyGroupList[0].groupName}</em></mark> 用户 <mark>${currentPerson.name}</mark> 您好，欢迎使用本系统</p>
+<p>尊敬的  <code>${currentPartyGroupList[0].groupName}</code> 用户 <code>${currentPerson.name}</code> 您好，欢迎使用本系统</p>
 <footer>您是本月第X次登录本系统，本系统用户中排名：Y位</footer>
 </blockquote>
 <hr>

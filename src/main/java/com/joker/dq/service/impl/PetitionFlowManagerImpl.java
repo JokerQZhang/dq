@@ -8,7 +8,10 @@ import com.joker.dq.service.impl.GenericManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.jws.WebService;
 
 @Service("petitionFlowManager")
@@ -21,4 +24,34 @@ public class PetitionFlowManagerImpl extends GenericManagerImpl<PetitionFlow, Lo
         super(petitionFlowDao);
         this.petitionFlowDao = petitionFlowDao;
     }
+
+	@Override
+	public PetitionFlow getNowPetitionFlow(Long petitionId) {
+		if(petitionId==null){
+			return null;
+		}else{
+			Map condition = new HashMap();
+			condition.put("petitionId", petitionId);
+			condition.put("lastRecord", "yes");
+			List petitionFlowList = petitionFlowDao.searchByCondition(condition);
+			if(petitionFlowList!=null && petitionFlowList.size()>0){
+				PetitionFlow petitionFlow = (PetitionFlow)petitionFlowList.get(0);
+				return petitionFlow;
+			}else{
+				return null;
+			}
+		}
+	}
+
+	@Override
+	public List getAllPetitionFlow(Long petitionId) {
+		if(petitionId==null){
+			return null;
+		}else{
+			Map condition = new HashMap();
+			condition.put("petitionId", petitionId);
+			List petitionFlowList = petitionFlowDao.searchByCondition(condition);
+			return petitionFlowList;
+		}
+	}
 }

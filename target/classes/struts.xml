@@ -799,7 +799,10 @@
         </action>
 
         <action name="editPetition" class="com.joker.dq.webapp.action.PetitionAction" method="edit">
-            <result>/WEB-INF/pages/petitionForm.jsp</result>
+            <result name="success">/WEB-INF/pages/petitionForm.jsp</result>
+            <result name="approval">/WEB-INF/pages/petitionApprovalForm.jsp</result>
+            <result name="resolve">/WEB-INF/pages/petitionResolveForm.jsp</result>
+            <result name="finish">/WEB-INF/pages/petitionFinishForm.jsp</result>
             <result name="error">/WEB-INF/pages/petitionList.jsp</result>
         </action>
 
@@ -808,6 +811,15 @@
             <result name="cancel" type="redirectAction">petitions</result>
             <result name="delete" type="redirectAction">petitions</result>
             <result name="success" type="redirectAction">petitions</result>
+        </action>
+        <action name="saveApprovalPetition" class="com.joker.dq.webapp.action.PetitionAction" method="saveApprovalPetition">
+            <result name="success">/WEB-INF/pages/petitionApprovalForm.jsp</result>
+        </action>
+        <action name="saveFinishPetition" class="com.joker.dq.webapp.action.PetitionAction" method="saveFinishPetition">
+            <result name="success">/WEB-INF/pages/petitionFinishForm.jsp</result>
+        </action>
+        <action name="saveResolvePetition" class="com.joker.dq.webapp.action.PetitionAction" method="saveResolvePetition">
+            <result name="success">/WEB-INF/pages/petitionResolveForm.jsp</result>
         </action>
         <!--
         <action name="petitions">
@@ -832,14 +844,66 @@
             <result name="delete" type="redirectAction">petitionFlows</result>
             <result name="success" type="redirectAction">petitionFlows</result>
         </action>
-        <!--
-        <action name="petitionFlows">
-            <result>/WEB-INF/pages/petitionFlowList.jsp</result>
-        </action>
-        -->
         <!--PetitionFlowAction-END-->
 
+        <!--TestQuestionAction-START-->
+        <action name="testQuestions" class="com.joker.dq.webapp.action.TestQuestionAction" method="list">
+            <result>/WEB-INF/pages/testQuestionList.jsp</result>
+        </action>
+
+        <action name="editTestQuestion" class="com.joker.dq.webapp.action.TestQuestionAction" method="edit">
+            <result>/WEB-INF/pages/testQuestionForm.jsp</result>
+            <result name="error">/WEB-INF/pages/testQuestionList.jsp</result>
+        </action>
+
+        <action name="saveTestQuestion" class="com.joker.dq.webapp.action.TestQuestionAction" method="save">
+            <result name="input">/WEB-INF/pages/testQuestionForm.jsp</result>
+            <result name="cancel" type="redirectAction">testQuestions</result>
+            <result name="delete" type="redirectAction">testQuestions</result>
+            <result name="success" type="redirectAction">testQuestions</result>
+        </action>
+        <!--TestQuestionAction-END-->
+
+        <!--TestPaperAction-START-->
+        <action name="testPapers" class="com.joker.dq.webapp.action.TestPaperAction" method="list">
+            <result>/WEB-INF/pages/testPaperList.jsp</result>
+        </action>
+
+        <action name="editTestPaper" class="com.joker.dq.webapp.action.TestPaperAction" method="edit">
+            <result>/WEB-INF/pages/testPaperForm.jsp</result>
+            <result name="error">/WEB-INF/pages/testPaperList.jsp</result>
+        </action>
+
+        <action name="saveTestPaper" class="com.joker.dq.webapp.action.TestPaperAction" method="save">
+            <result name="input">/WEB-INF/pages/testPaperForm.jsp</result>
+            <result name="cancel" type="redirectAction">testPapers</result>
+            <result name="delete" type="redirectAction">testPapers</result>
+            <result name="success" type="redirectAction">testPapers</result>
+        </action>
+        <!--TestPaperAction-END-->
+
+        <!--AnswererAction-START-->
+        <action name="answerers" class="com.joker.dq.webapp.action.AnswererAction" method="list">
+            <result>/WEB-INF/pages/answererList.jsp</result>
+        </action>
+
+        <action name="editAnswerer" class="com.joker.dq.webapp.action.AnswererAction" method="edit">
+            <result>/WEB-INF/pages/answererForm.jsp</result>
+            <result name="error">/WEB-INF/pages/answererList.jsp</result>
+        </action>
+
+        <action name="saveAnswerer" class="com.joker.dq.webapp.action.AnswererAction" method="save">
+            <result name="input">/WEB-INF/pages/answererForm.jsp</result>
+            <result name="cancel" type="redirectAction">answerers</result>
+            <result name="delete" type="redirectAction">answerers</result>
+            <result name="success" type="redirectAction">answerers</result>
+        </action>
+        <!--AnswererAction-END-->
+
         <!-- Add additional actions here -->
+
+
+
 
 
 
@@ -1043,6 +1107,18 @@
     	<action name="cpChargeOper" class="com.joker.dq.webapp.action.CpChargeAction" method="cpChargeOper">
     		<result>/WEB-INF/pages/dq/cpchargeoper.jsp</result>
     	</action>
+    	<action name="petitionFlows">
+            <result>/WEB-INF/pages/petitionFlowList.jsp</result>
+        </action>
+        <action name="testQuestions">
+            <result>/WEB-INF/pages/dq/testQuestionList.jsp</result>
+        </action>
+        <action name="answerers">
+            <result>/WEB-INF/pages/answererList.jsp</result>
+        </action>
+        <action name="testPapers">
+            <result>/WEB-INF/pages/testPaperList.jsp</result>
+        </action>
     </package>
     <package name="dqd" extends="default" namespace="/dqd">
     	<action name="partyGroupsTree" class="com.joker.dq.webapp.action.PartyGroupAction" method="partyGroupsTree">
@@ -1145,6 +1221,12 @@
         </action>
         <action name="approvalDangPersonSave" class="com.joker.dq.webapp.action.PersonAction" method="approvalDangPersonSave">
             <result>/WEB-INF/pages/dq/approvalDangPerson.jsp</result>
+        </action>
+        <action name="examination" class="com.joker.dq.webapp.action.TestPaperAction" method="examination">
+            <result>/WEB-INF/pages/dq/examination.jsp</result>
+        </action>
+        <action name="examinationpaper" class="com.joker.dq.webapp.action.TestPaperAction" method="examinationpaper">
+            <result>/WEB-INF/pages/dq/examinationpaper.jsp</result>
         </action>
     </package>
     

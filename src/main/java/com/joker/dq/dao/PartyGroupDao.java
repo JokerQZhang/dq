@@ -40,4 +40,5 @@ public interface PartyGroupDao extends GenericDao<PartyGroup, Long> {
 	 * @return
 	 */
 	public List getPartyGroupToRS(Map condition);
+	public List getZhiBuByCondition(Map condition);
 }

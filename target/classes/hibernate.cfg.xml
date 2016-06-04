@@ -52,5 +52,11 @@
         <mapping class="com.joker.dq.model.CpCharge"/>
         <mapping class="com.joker.dq.model.Petition"/>
         <mapping class="com.joker.dq.model.PetitionFlow"/>
+        <mapping class="com.joker.dq.model.TestQuestion"/>
+        <mapping class="com.joker.dq.model.TestPaper"/>
+        <mapping class="com.joker.dq.model.Answerer"/>
+        <mapping class="com.joker.dq.model.PaperQuestion"/>
+        <mapping class="com.joker.dq.model.QuestionOption"/>
+        <mapping class="com.joker.dq.model.Examination"/>
     </session-factory>
 </hibernate-configuration>

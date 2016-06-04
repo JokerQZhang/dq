@@ -4,7 +4,7 @@
        default-lazy-init="true">
 
     <bean id="adminInterceptor" class="com.joker.dq.webapp.interceptor.UserRoleAuthorizationInterceptor">
-        <property name="authorizedRoles" value="ROLE_ADMIN"/>
+        <property name="authorizedRoles" value="ROLE_ADMIN,ROLE_CP_ADMIN"/>
     </bean>
     
     <bean id="accessDeniedInterceptor" class="com.joker.dq.webapp.interceptor.AccessDeniedInterceptor" />

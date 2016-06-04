@@ -266,6 +266,18 @@ public class PartyGroupAction extends BaseAction implements Preparable {
     }
     public String partyGroupsTree(){
     	String parentId = getRequest().getParameter("parentGroupId");
+    	//当前操作员的归属PartyGroupId
+    	if(parentId==null || parentId.equals("")){
+    		List gplist = super.getRelationPartyGroup();
+    		if(gplist!=null && gplist.size()>0){
+    			PartyGroup pg = (PartyGroup)gplist.get(0);
+    			getRequest().setAttribute("rootPg", pg);
+    			parentId = pg.getPartyId().toString();
+    		}
+    		//用户的归属组织id为根节点
+    		getRequest().setAttribute("isRoot", "isRoot");
+    	}
+    	
     	Map<String,String> conditon = new HashMap<String,String>();
     	//条件查询不考虑树形结构
     	if(query!=null && !"".equals(query)){
@@ -290,8 +302,15 @@ public class PartyGroupAction extends BaseAction implements Preparable {
     	return SUCCESS;
     }
     public String zhibuTree(){
-
     	String parentId = getRequest().getParameter("parentGroupId");
+    	if(parentId==null || "".equals(parentId)){
+    		PartyGroup zhibuRoot = super.getNowZhibu();
+    		if(zhibuRoot!=null){
+    			parentId = zhibuRoot.getPartyId().toString();
+    			getRequest().setAttribute("isRoot", "isRoot");
+    			getRequest().setAttribute("zhibuRoot", zhibuRoot);
+    		}
+    	}
     	Map<String,String> conditon = new HashMap<String,String>();
     	//条件查询不考虑树形结构
     	if(query!=null && !"".equals(query)){

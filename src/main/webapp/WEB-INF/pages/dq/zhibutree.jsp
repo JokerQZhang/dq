@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
+<%@ page import="com.joker.dq.model.PartyGroup" %>
 <%@ include file="/common/taglibs.jsp"%>
 <%
 if(request.getAttribute("showForm") == null){
@@ -11,7 +12,7 @@ if(request.getAttribute("showForm") == null){
     <form method="post" action="${ctx}/dqd/zhibuTree" id="partyGroupSearchForm" class="form-inline" onsubmit="return ajaxSubmitFormUpdateAreas(this,$('#partyGroupSearchFormDiv'));">
 	    <input type="hidden" name="page.pageSize"/>
     	<input type="hidden" name="page.pageIndex"/>
-    	<input type="hidden" name="parentGroupId" value="2">
+    	<input type="hidden" name="parentGroupId">
 	    <div id="search" class="text-right">
 	        <span class="col-sm-8">
 	            <input type="text" size="20" name="q" id="query" value="${param.q}"
@@ -97,7 +98,7 @@ if(request.getAttribute("showForm") == null){
 	        	selectedGroupId = parentId;
 	        	isNowDangwei=isdangwei;
 	        }else{
-	        	isNowDangwei="";
+	        	isNowDangwei=isdangwei;
 	        	selectedGroupId = parentId;
 	        }
 	      	//选中触发
@@ -122,13 +123,30 @@ if(request.getAttribute("showForm") == null){
 <%
 }else{
 	String isRoot = (String)request.getAttribute("isRoot");
+	PartyGroup zhibuRoot = (PartyGroup)request.getAttribute("zhibuRoot");
 %>
 <%
 	if(isRoot!=null && "isRoot".equals(isRoot)){
+		if(zhibuRoot!=null && zhibuRoot.getPartyId()!=null){
 %>
 	<ul>
 		<li class="parent_li">
-			<span onclick="selectXianWei(this,'2')"><i class="glyphicon glyphicon-th-list"></i> 尉氏县党委结构</span>
+			<span onclick="barLeafClick(this,'${zhibuRoot.partyId}','dangwei')"><i class="glyphicon glyphicon-th-list"></i> ${zhibuRoot.groupName}</span>
+			<ul>
+				<c:forEach items="${partyGroups}" var="partyGroup">
+				<li class="parent_li">
+					<span onclick="barLeafClick(this,'${partyGroup.partyId}')"><i class="glyphicon glyphicon-plus-sign"></i> ${partyGroup.groupName}</span>
+				</li>
+				</c:forEach>
+			</ul>
+		</li>
+	</ul>
+<%
+		}else{
+%>
+	<ul>
+		<li class="parent_li">
+			<span onclick="selectXianWei(this,'2','xianwei')"><i class="glyphicon glyphicon-th-list"></i> 尉氏县党委结构</span>
 			<ul>
 				<c:forEach items="${partyGroups}" var="partyGroup">
 				<li class="parent_li">
@@ -139,6 +157,7 @@ if(request.getAttribute("showForm") == null){
 		</li>
 	</ul>
 <%
+		}
 	}else{
 %>
 	<ul>

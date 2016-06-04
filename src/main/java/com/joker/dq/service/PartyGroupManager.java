@@ -40,4 +40,5 @@ public interface PartyGroupManager extends GenericManager<PartyGroup, Long> {
      */
     public PartyGroup getZhiBuByPersonId(Long partyId);
     public PartyGroup getZhiBuByCun(Long partyId);
+    public List getZhiBuByCondition(Map condition);
 }

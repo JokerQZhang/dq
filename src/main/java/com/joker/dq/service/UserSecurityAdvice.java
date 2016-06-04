@@ -55,7 +55,7 @@ public class UserSecurityAdvice implements MethodBeforeAdvice, AfterReturningAdv
             boolean administrator = false;
             Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
             for (GrantedAuthority role : roles) {
-                if (role.getAuthority().equals(Constants.ADMIN_ROLE)) {
+                if (role.getAuthority().equals(Constants.ADMIN_ROLE) || role.getAuthority().equals("ROLE_CP_ADMIN")) {
                     administrator = true;
                     break;
                 }

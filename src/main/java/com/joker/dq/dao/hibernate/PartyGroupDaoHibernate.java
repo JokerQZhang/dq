@@ -238,6 +238,12 @@ public class PartyGroupDaoHibernate extends GenericDaoHibernate<PartyGroup, Long
 			if(condition.containsKey("partyRelationshipTypeId")){
 				sql += " AND a.party_relationship_type_id=" + condition.get("partyRelationshipTypeId");
 			}
+			if(condition.containsKey("partyRelationshipTypeIds")){
+				sql += " AND a.party_relationship_type_id in (" + condition.get("partyRelationshipTypeIds") + ")";
+			}
+			if(condition.containsKey("roleTypeId")){
+				sql += " AND EXISTS (SELECT 1 FROM party_role WHERE party_id=b.party_id AND role_type_id=" + condition.get("roleTypeId") + ")";
+			}
 			if(condition.containsKey("partyId")){
 				sql += " AND a.party_id_to=" + condition.get("partyId");
 			}
@@ -261,6 +267,19 @@ public class PartyGroupDaoHibernate extends GenericDaoHibernate<PartyGroup, Long
 			}
 		}
 		return super.findBySql(sql).addEntity("b", PartyGroup.class).list();
+	}
+
+	@Override
+	public List getZhiBuByCondition(Map condition) {
+		String sql = " SELECT a.*                                   "
+					+" FROM party_group a                           "
+					+" INNER JOIN party_role b                      "
+					+" ON a.party_id=b.party_id AND b.role_type_id=2"
+					+" WHERE 1=1 ";
+		if(condition!=null && !condition.isEmpty()){
+			
+		}
+		return super.findBySql(sql).addEntity("a", PartyGroup.class).list();
 	}
 	
 }

@@ -13,7 +13,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,PetitionFlowTests,PetitionTests,CpChargeTests,TzZtjjTests,TzHjmdTests,TzGfmzTests,TzFwqzTests,TzDyzthTests,TzDhbzTests,ApprovalProjTests,DqHuiTests,TbProvideDtlTests,TbProvideTests,TbCarePeopleTests,FacilityTransitionTests,ShipmentTests,SalePlanDtlTests,SalePlanTests,ShipCarTests,PriceTests,ProductTests,FacilityTests,PersonTests,PartyGroupTests,RoleTypeTests,UomConversionTests,UomTests,UomTypeTests,PartyRelationshipTests,PartyRelationshipTypeTests,StatusValidChangeTests,StatusItemTests,StatusTypeTests,EnumerationTests,EnumerationTypeTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,AnswererTests,TestPaperTests,TestQuestionTests,PetitionFlowTests,PetitionTests,CpChargeTests,TzZtjjTests,TzHjmdTests,TzGfmzTests,TzFwqzTests,TzDyzthTests,TzDhbzTests,ApprovalProjTests,DqHuiTests,TbProvideDtlTests,TbProvideTests,TbCarePeopleTests,FacilityTransitionTests,ShipmentTests,SalePlanDtlTests,SalePlanTests,ShipCarTests,PriceTests,ProductTests,FacilityTests,PersonTests,PartyGroupTests,RoleTypeTests,UomConversionTests,UomTests,UomTypeTests,PartyRelationshipTests,PartyRelationshipTypeTests,StatusValidChangeTests,StatusItemTests,StatusTypeTests,EnumerationTests,EnumerationTypeTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -3438,7 +3438,283 @@
         </webtest>
     </target>
     <!--PetitionFlow-END-->
+    <!--TestQuestion-START-->
+    <!-- runs testQuestion-related tests -->
+    <target name="TestQuestionTests" depends="SearchTestQuestions,EditTestQuestion,SaveTestQuestion,AddTestQuestion,DeleteTestQuestion"
+            description="Call and executes all testQuestion test cases (targets)">
+        <echo>Successfully ran all TestQuestion UI tests!</echo>
+    </target>
+
+    <!-- Verify the testQuestions list screen displays without errors -->
+    <target name="SearchTestQuestions" description="Tests search for and displaying all testQuestions">
+        <webtest name="searchTestQuestions">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View TestQuestion link" url="/testQuestions"/>
+                <verifytitle description="we should see the testQuestionList title"
+                             text=".*${testQuestionList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the testQuestionList title"
+                             text=".*${testQuestionList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit testQuestion screen displays without errors -->
+    <target name="EditTestQuestion" description="Tests editing an existing TestQuestion's information">
+        <webtest name="editTestQuestion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit TestQuestion link" url="/editTestQuestion?questionId=-1"/>
+                <verifytitle description="we should see the testQuestionDetail title"
+                             text=".*${testQuestionDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a testQuestion and then save -->
+    <target name="SaveTestQuestion" description="Tests editing and saving a testQuestion">
+        <webtest name="saveTestQuestion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit TestQuestion link" url="/editTestQuestion?questionId=-1"/>
+                <verifytitle description="we should see the testQuestionDetail title"
+                             text=".*${testQuestionDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${testQuestionDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${testQuestion.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new TestQuestion -->
+    <target name="AddTestQuestion" description="Adds a new TestQuestion">
+        <webtest name="addTestQuestion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editTestQuestion"/>
+                <verifytitle description="we should see the testQuestionDetail title"
+                             text=".*${testQuestionDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="TestQuestion List appears if save successful"
+                             text=".*${testQuestionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${testQuestion.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing testQuestion -->
+    <target name="DeleteTestQuestion" description="Deletes existing TestQuestion">
+        <webtest name="deleteTestQuestion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit TestQuestion link" url="/editTestQuestion?questionId=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display TestQuestion List" text=".*${testQuestionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${testQuestion.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--TestQuestion-END-->
+    <!--TestPaper-START-->
+    <!-- runs testPaper-related tests -->
+    <target name="TestPaperTests" depends="SearchTestPapers,EditTestPaper,SaveTestPaper,AddTestPaper,DeleteTestPaper"
+            description="Call and executes all testPaper test cases (targets)">
+        <echo>Successfully ran all TestPaper UI tests!</echo>
+    </target>
+
+    <!-- Verify the testPapers list screen displays without errors -->
+    <target name="SearchTestPapers" description="Tests search for and displaying all testPapers">
+        <webtest name="searchTestPapers">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View TestPaper link" url="/testPapers"/>
+                <verifytitle description="we should see the testPaperList title"
+                             text=".*${testPaperList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the testPaperList title"
+                             text=".*${testPaperList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit testPaper screen displays without errors -->
+    <target name="EditTestPaper" description="Tests editing an existing TestPaper's information">
+        <webtest name="editTestPaper">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit TestPaper link" url="/editTestPaper?paperId=-1"/>
+                <verifytitle description="we should see the testPaperDetail title"
+                             text=".*${testPaperDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a testPaper and then save -->
+    <target name="SaveTestPaper" description="Tests editing and saving a testPaper">
+        <webtest name="saveTestPaper">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit TestPaper link" url="/editTestPaper?paperId=-1"/>
+                <verifytitle description="we should see the testPaperDetail title"
+                             text=".*${testPaperDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${testPaperDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${testPaper.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new TestPaper -->
+    <target name="AddTestPaper" description="Adds a new TestPaper">
+        <webtest name="addTestPaper">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editTestPaper"/>
+                <verifytitle description="we should see the testPaperDetail title"
+                             text=".*${testPaperDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="TestPaper List appears if save successful"
+                             text=".*${testPaperList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${testPaper.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing testPaper -->
+    <target name="DeleteTestPaper" description="Deletes existing TestPaper">
+        <webtest name="deleteTestPaper">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit TestPaper link" url="/editTestPaper?paperId=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display TestPaper List" text=".*${testPaperList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${testPaper.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--TestPaper-END-->
+    <!--Answerer-START-->
+    <!-- runs answerer-related tests -->
+    <target name="AnswererTests" depends="SearchAnswerers,EditAnswerer,SaveAnswerer,AddAnswerer,DeleteAnswerer"
+            description="Call and executes all answerer test cases (targets)">
+        <echo>Successfully ran all Answerer UI tests!</echo>
+    </target>
+
+    <!-- Verify the answerers list screen displays without errors -->
+    <target name="SearchAnswerers" description="Tests search for and displaying all answerers">
+        <webtest name="searchAnswerers">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Answerer link" url="/answerers"/>
+                <verifytitle description="we should see the answererList title"
+                             text=".*${answererList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the answererList title"
+                             text=".*${answererList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit answerer screen displays without errors -->
+    <target name="EditAnswerer" description="Tests editing an existing Answerer's information">
+        <webtest name="editAnswerer">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Answerer link" url="/editAnswerer?answererId=-1"/>
+                <verifytitle description="we should see the answererDetail title"
+                             text=".*${answererDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a answerer and then save -->
+    <target name="SaveAnswerer" description="Tests editing and saving a answerer">
+        <webtest name="saveAnswerer">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Answerer link" url="/editAnswerer?answererId=-1"/>
+                <verifytitle description="we should see the answererDetail title"
+                             text=".*${answererDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${answererDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${answerer.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Answerer -->
+    <target name="AddAnswerer" description="Adds a new Answerer">
+        <webtest name="addAnswerer">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editAnswerer"/>
+                <verifytitle description="we should see the answererDetail title"
+                             text=".*${answererDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Answerer List appears if save successful"
+                             text=".*${answererList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${answerer.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing answerer -->
+    <target name="DeleteAnswerer" description="Deletes existing Answerer">
+        <webtest name="deleteAnswerer">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Answerer link" url="/editAnswerer?answererId=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Answerer List" text=".*${answererList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${answerer.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--Answerer-END-->
 </project>
+
+
+
 
 
 

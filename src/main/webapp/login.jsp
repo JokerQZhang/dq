@@ -119,12 +119,7 @@
 				        <fmt:message key='button.login'/>
 				    </button>
 				</form>
-				<p>
-				    <fmt:message key="login.signup">
-				        <fmt:param><c:url value="/signup"/></fmt:param>
-				    </fmt:message>
-				</p>
-				<p><fmt:message key="login.passwordHint"/></p>
+				
 			</div>
 		</div>
 	</div>

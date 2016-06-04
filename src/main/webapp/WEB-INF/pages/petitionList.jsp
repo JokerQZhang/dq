@@ -7,9 +7,20 @@ if(request.getAttribute("showForm") == null){
 	    <title><fmt:message key="petitionList.title"/></title>
 	    <meta name="menu" content="PetitionMenu"/>
 	</head>
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<c:if test="${type == 'a'}">受理信访举报信息</c:if>
+		  	<c:if test="${type == 'b'}">待审核信访举报信息</c:if>
+		  	<c:if test="${type == 'c'}">待处理信访举报信息</c:if>
+		  	<c:if test="${type == 'd'}">待办结信访举报信息</c:if>
+		  	<c:if test="${type == 'e'}">查询信访举报信息</c:if>
+		  </div>
+		  <div class="panel-body">
     <form method="post" action="${ctx}/petitions" id="petitionSearchForm" class="form-inline" onsubmit="return ajaxSubmitFormUpdateAreas(this,$('#petitionSearchFormDiv'));">
 	    <input type="hidden" name="page.pageSize"/>
     	<input type="hidden" name="page.pageIndex"/>
+    	<input type="hidden" name="type" value="${type}"/>
 	    <div id="search" class="text-right">
 	        <span class="col-sm-9">
 	            <input type="text" size="20" name="q" id="query" value="${param.q}"
@@ -19,9 +30,11 @@ if(request.getAttribute("showForm") == null){
 		        <button id="button.search" class="btn btn-default btn-sm" type="submit">
 		            <i class="icon-search"></i> <fmt:message key="button.search"/>
 		        </button>
-		        <a class="btn btn-primary btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/editPetition'/>',title:'<fmt:message key="petitionDetail.heading"/>',width:600,height:500,beforeDialogOpen:beforePetitionFormOpen,afterDialogOpen:afterPetitionFormOpen,data:{method:'Add',from:'list'}})" >
+		        <c:if test="${type == 'a'}">
+		        <a class="btn btn-primary btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/editPetition?type='/>${type}',title:'<fmt:message key="petitionDetail.heading"/>',width:1100,height:500,beforeDialogOpen:beforePetitionFormOpen,afterDialogOpen:afterPetitionFormOpen,data:{method:'Add',from:'list'}})" >
 		            <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/>
 		        </a>
+		        </c:if>
 	        </div>
 	    </div>
     </form>
@@ -35,72 +48,61 @@ if(request.getAttribute("showForm") == null){
 		if(typeof(afterPetitionFormOpen) == "undefined"){
 			afterPetitionFormOpen = function(data){return true;};
 		}
+		$(function(){
+			$("#petitionSearchForm").submit();
+		})
 	</script>
     <div id="petitionSearchFormDiv"></div>
+    </div>
+    </div>
+    </div>
+    
 <%
 }else{
 %>
 	<table class="table table-condensed table-striped table-hover table-bordered">
 		<thead>
 			<tr>
-				<th><fmt:message key="petition.petitionId"/></th>
-				<th><fmt:message key="petition.acceptContent"/></th>
-				<th><fmt:message key="petition.acceptName"/></th>
-				<th><fmt:message key="petition.acceptTime"/></th>
-				<th><fmt:message key="petition.createdByUser"/></th>
-				<th><fmt:message key="petition.createdTime"/></th>
-				<th><fmt:message key="petition.expectEndTime"/></th>
-				<th><fmt:message key="petition.lastUpdatedByUser"/></th>
-				<th><fmt:message key="petition.lastUpdatedTime"/></th>
-				<th><fmt:message key="petition.leaderContent"/></th>
-				<th><fmt:message key="petition.processPartyId"/></th>
-				<th><fmt:message key="petition.realEndTime"/></th>
-				<th><fmt:message key="petition.reportContent"/></th>
-				<th><fmt:message key="petition.reportDep"/></th>
-				<th><fmt:message key="petition.reportMemo"/></th>
-				<th><fmt:message key="petition.reportMethod"/></th>
-				<th><fmt:message key="petition.reportPConnect"/></th>
-				<th><fmt:message key="petition.reportPNum"/></th>
-				<th><fmt:message key="petition.reportPeople"/></th>
-				<th><fmt:message key="petition.reportStatus"/></th>
-				<th><fmt:message key="petition.reportType"/></th>
-				<th><fmt:message key="petition.reportedDep"/></th>
-				<th><fmt:message key="petition.reportedMemo"/></th>
-				<th><fmt:message key="petition.reportedPeople"/></th>
-				<th><fmt:message key="petition.reportedStatus"/></th>
-				<th><fmt:message key="petition.statusId"/></th>
+				<th rowspan="2"><fmt:message key="petition.petitionId"/></th>
+				<th colspan="3">被举报人信息</th>
+				<th colspan="5">举报人信息</th>
+				<th colspan="5">信访处理信息</th>
+			</tr>
+			<tr>
+				<th>姓名</th>
+				<th>工作单位</th>
+				<th>职务</th>
+				<th>姓名</th>
+				<th>联系方式</th>
+				<th>人数</th>
+				<th>问题类型</th>
+				<th>举报方式</th>
+				<th>受理人</th>
+				<th>受理时间</th>
+				<th>要求结案时间</th>
+				<th>责任部门</th>
+				<th>处理状态</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${petitions}" var="petition">
 				<tr onclick="commonTableListSelect(this,afterSelectPetition)">
-					<td><a class="btn btn-info btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/editPetition'/>',title:'<fmt:message key="petitionDetail.heading"/>',width:600,height:500,beforeDialogOpen:beforePetitionFormOpen,afterDialogOpen:afterPetitionFormOpen,data:{petitionId:'${petition.petitionId}',from:'list'}})">${petition.petitionId}</a></td>
-					
-					<td>${petition.acceptContent}</td>
-					<td>${petition.acceptName}</td>
-					<td>${petition.acceptTime}</td>
-					<td>${petition.createdByUser}</td>
-					<td>${petition.createdTime}</td>
-					<td>${petition.expectEndTime}</td>
-					<td>${petition.lastUpdatedByUser}</td>
-					<td>${petition.lastUpdatedTime}</td>
-					<td>${petition.leaderContent}</td>
-					<td>${petition.processPartyId}</td>
-					<td>${petition.realEndTime}</td>
-					<td>${petition.reportContent}</td>
-					<td>${petition.reportDep}</td>
-					<td>${petition.reportMemo}</td>
-					<td>${petition.reportMethod}</td>
+					<td><a class="btn btn-info btn-sm" href="#" onclick="ajaxLoadDaialog({url:'<c:url value='/editPetition?type='/>${type}',title:'<fmt:message key="petitionDetail.heading"/>',width:1100,height:500,beforeDialogOpen:beforePetitionFormOpen,afterDialogOpen:afterPetitionFormOpen,data:{petitionId:'${petition.petitionId}',from:'list'}})">${petition.petitionId}</a></td>
+					<td>${petition.reportedPeople}</td>
+					<td>${petition.reportedDep}</td>
+					<td>${petition.reportedStatus}</td>
+					<td>${petition.reportPeople}</td>
 					<td>${petition.reportPConnect}</td>
 					<td>${petition.reportPNum}</td>
-					<td>${petition.reportPeople}</td>
-					<td>${petition.reportStatus}</td>
-					<td>${petition.reportType}</td>
-					<td>${petition.reportedDep}</td>
-					<td>${petition.reportedMemo}</td>
-					<td>${petition.reportedPeople}</td>
-					<td>${petition.reportedStatus}</td>
-					<td>${petition.statusId}</td>
+					<td>${problemTypeMap[petition.reportType].description}</td>
+					<td>${methodMap[petition.reportMethod].description}</td>
+					<c:set var="acctime" value="${petition.acceptTime}" scope="request"/>
+					<c:set var="eetime" value="${petition.expectEndTime}" scope="request"/>
+					<td>${petition.acceptName}</td>
+					<td><%=com.joker.dq.util.MyDateUtil.getFormatedString("yyyy-MM-dd", (java.util.Date)request.getAttribute("acctime"))%></td>
+					<td><%=com.joker.dq.util.MyDateUtil.getFormatedString("yyyy-MM-dd", (java.util.Date)request.getAttribute("eetime"))%></td>
+					<td>${groupMap[petition.processPartyId].groupName}</td>
+					<td>${statusMap[petition.statusId].description}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

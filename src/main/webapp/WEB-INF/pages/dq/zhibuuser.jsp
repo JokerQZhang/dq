@@ -18,5 +18,5 @@
 
 </div>
 <hr>
-<h4>党员信息</h4>
+<h4>党委支部用户信息</h4>
 <jsp:include page="/WEB-INF/pages/dq/cunpersonList.jsp" flush="true"></jsp:include>

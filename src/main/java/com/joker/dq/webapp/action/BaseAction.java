@@ -10,12 +10,14 @@ import com.joker.dq.Constants;
 import com.joker.dq.model.Enumeration;
 import com.joker.dq.model.PartyGroup;
 import com.joker.dq.model.Person;
+import com.joker.dq.model.StatusItem;
 import com.joker.dq.model.Uom;
 import com.joker.dq.model.User;
 import com.joker.dq.service.EnumerationManager;
 import com.joker.dq.service.MailEngine;
 import com.joker.dq.service.PartyGroupManager;
 import com.joker.dq.service.RoleManager;
+import com.joker.dq.service.StatusItemManager;
 import com.joker.dq.service.UomManager;
 import com.joker.dq.service.UserManager;
 
@@ -105,8 +107,13 @@ public class BaseAction extends ActionSupport {
     protected EnumerationManager enumerationManager;
     protected UomManager uomManager;
     protected PartyGroupManager partyGroupManager;
+    protected StatusItemManager statusItemManager;
     
-    public void setPartyGroupManager(PartyGroupManager partyGroupManager) {
+    public void setStatusItemManager(StatusItemManager statusItemManager) {
+		this.statusItemManager = statusItemManager;
+	}
+
+	public void setPartyGroupManager(PartyGroupManager partyGroupManager) {
 		this.partyGroupManager = partyGroupManager;
 	}
 
@@ -335,6 +342,44 @@ public class BaseAction extends ActionSupport {
     		}
     	}
     	return options;
+    }
+    /**
+     * 获取指定数据字典类型下的所有选项，以map的方式返回，map的key为数据字典选项的ID，一般用于表格展示的时候显示对应数据字典ID的文字描述，这种方式用于较少的选项的时候，
+     * 较多的时候这种方式太占内存，可以用另一种方式：查询某条记录的时候同时带出对应描述信息的对象，然后放到前台去展示
+     * @param enumTypeId
+     * @return
+     */
+    public Map<Object,Enumeration> getEnumerationMap(Long enumTypeId, String type){
+    	Map<Object,Enumeration> result = new HashMap<Object,Enumeration>();
+    	Map condition = new HashMap();
+    	condition.put("enumTypeId", enumTypeId);
+    	List selectEnum = enumerationManager.searchByCondition(condition, null);
+    	if(selectEnum!=null && selectEnum.size()>0){
+    		for(Enumeration sEnumeration : (List<Enumeration>)selectEnum){
+    			if(type!=null && type.equals("Long")){
+    				result.put(sEnumeration.getEnumId(), sEnumeration);
+    			}else{
+    				result.put(sEnumeration.getEnumId().toString(), sEnumeration);
+    			}
+    		}
+    	}
+    	return result;
+    }
+    public Map<Object,StatusItem> getStatusMap(Long statusTypeId, String type){
+    	Map<Object,StatusItem> result = new HashMap<Object,StatusItem>();
+    	Map condition = new HashMap();
+    	condition.put("statusTypeId", statusTypeId);
+    	List selectStat = statusItemManager.searchByCondition(condition);
+    	if(selectStat!=null && selectStat.size()>0){
+    		for(StatusItem statusItem : (List<StatusItem>)selectStat){
+    			if(type!=null && type.equals("Long")){
+    				result.put(statusItem.getStatusId(), statusItem);
+    			}else{
+    				result.put(statusItem.getStatusId().toString(), statusItem);
+    			}
+    		}
+    	}
+    	return result;
     }
     public String getUomSelector(Long uomTypeId, Long selectedUomId){
     	String options = "";

@@ -118,14 +118,15 @@
 		ajaxLoadDaialog({url:'<c:url value='/dqd/editPartyGroupDangwei'/>',title:'<fmt:message key="partyGroupDetail.heading"/>',width:600,height:500,beforeDialogOpen:undefined,afterDialogOpen:afterPartyGroupFormOpen,data:{partyId:selectedGroupId,method:'Add',from:'list'}});
 	}
 	function addPeople(){
-		if(selectedGroupId==null||selectedGroupId==""||isNowDangwei!=""){
+		if(selectedGroupId==null||selectedGroupId==""||typeof(isNowDangwei)!="undefined"){
+			
 			alert("请先选择支部，然后添加党员。");
 			return false;
 		}
 		ajaxLoadDaialog({url:'<c:url value='/dqd/editDangPerson'/>',title:'党员信息',width:1100,height:500,beforeDialogOpen:undefined,afterDialogOpen:afterPartyGroupFormOpen,data:{belongGroupId:selectedGroupId,method:'Add',from:'list'}});
 	}
 	function addPositivePeople(){
-		if(selectedGroupId==null||selectedGroupId==""||isNowDangwei!=""){
+		if(selectedGroupId==null||selectedGroupId==""||typeof(isNowDangwei)!="undefined"){
 			alert("请先选择支部，然后添加党员。");
 			return false;
 		}

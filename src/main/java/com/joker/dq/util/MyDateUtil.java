@@ -317,6 +317,9 @@ public class MyDateUtil {
 		if (formate == null) {
 			formate = "yyyy-MM-dd";
 		}
+		if(date == null){
+			return "";
+		}
 		sdf = new SimpleDateFormat(formate);
 		c = Calendar.getInstance();
 		c.setTime(date);
@@ -1088,5 +1091,15 @@ public class MyDateUtil {
     		return new Timestamp(new Date().getTime());
     	}
     } 
-
+    
+    public static String fromFormatToFormat(String dateStr, String fromFormat, String toFormat) throws Exception{
+    	if(fromFormat==null || "".equals(fromFormat)){
+    		fromFormat = "yyyy-MM-dd";
+    	}
+    	if(dateStr==null || "".equals(dateStr)){
+    		return "";
+    	}
+    	Date date = getDateFromStr(fromFormat, dateStr);
+    	return getFormatedString(toFormat, date);
+    }
 }

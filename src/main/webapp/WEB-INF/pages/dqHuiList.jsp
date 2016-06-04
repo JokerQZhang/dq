@@ -7,10 +7,16 @@ if(request.getAttribute("showForm") == null){
 	    <title><fmt:message key="menu.partymgn"/></title>
     <meta name="menu" content="PartyMgnMenu"/>
 	</head>
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">三会一课信息</div>
+		  <div class="panel-body">
+		    
+		 
     <form method="post" action="${ctx}/dqHuies" id="dqHuiSearchForm" class="form-inline" onsubmit="return ajaxSubmitFormUpdateAreas(this,$('#dqHuiSearchFormDiv'));">
 	    <input type="hidden" name="page.pageSize"/>
     	<input type="hidden" name="page.pageIndex"/>
-	    <div id="search" class="text-right" style="margin-top:0px;">
+	    <div id="search" class="text-right">
 	        <span class="col-sm-9">
 	            <input type="text" size="20" name="q" id="query" value="${param.q}"
 	                   placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
@@ -26,6 +32,9 @@ if(request.getAttribute("showForm") == null){
 	    </div>
     </form>
 	<script type="text/javascript">
+		$(function(){
+			$("#dqHuiSearchForm").submit();
+		})
 		if(typeof(afterSelectDqHui) == "undefined"){
 			afterSelectDqHui = function(data){return true;};
 		}
@@ -37,6 +46,9 @@ if(request.getAttribute("showForm") == null){
 		}
 	</script>
     <div id="dqHuiSearchFormDiv"></div>
+     </div>
+		</div>
+	</div>
 <%
 }else{
 %>

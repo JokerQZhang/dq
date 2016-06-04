@@ -22,7 +22,7 @@
         </div>
         <div class="form-group col-sm-6">
        	  <label><fmt:message key="cpCharge.operPeople"/></label>
-       	  <input class="form-control" type="text" name="cpCharge.operPeople" value="${cpCharge.operPeople eq ""?"":currentPerson.name}"/>
+       	  <input class="form-control" type="text" name="cpCharge.operPeople" value="${cpCharge.operPeople eq ''?'':currentPerson.name}"/>
         </div>
         <div class="form-group col-sm-3">
        	  <label><fmt:message key="cpCharge.operType"/></label>

@@ -63,3 +63,15 @@ mvn appfuse:gen -Dentity=TzZtjj
 mvn appfuse:gen -Dentity=CpCharge
 mvn appfuse:gen -Dentity=Petition
 mvn appfuse:gen -Dentity=PetitionFlow
+
+mvn appfuse:gen -Dentity=TestQuestion
+mvn appfuse:gen -Dentity=TestPaper
+mvn appfuse:gen -Dentity=Answerer
+
+<!-- 
+    ROLE_ADMIN--基础管理
+    ROLE_CP_ADMIN--各级管理员
+    ROLE_CP_USER--各级操作员,乡级，党委级别
+    ROLE_SS_USER--阳光工作站操作员 1受理2审批
+    ROLE_VI_USER--村级操作员，三会一课填报，第一书记工作台帐
+     -->

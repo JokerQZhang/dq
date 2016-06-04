@@ -104,4 +104,3 @@ mvn  process-resources       处理资源
 23、关于appfuse的theme的网站：http://css.appfuse.org/themes/ 
 24、产生了模型dao和service之后test类可能会报错，因为，target\test-classes目录下的一些积累并未编译，不知适合原因，打开一些java重新保存一下即可
 25、跳过测试阶段：mvn package -DskipTests
-gittest

@@ -132,8 +132,9 @@ public class PartyGroupManagerImpl extends GenericManagerImpl<PartyGroup, Long> 
 	public PartyGroup getZhiBuByPersonId(Long partyId) {
 		if(partyId!=null){
 			Map condition = new HashMap();
-			//从属党委支部上下级关系
-			condition.put("partyRelationshipTypeId", 4);
+			//从属党委支部上下级关系,这里有两种关系，一种是党委下的操作员1，一种是党委下的党员4
+			condition.put("partyRelationshipTypeIds", "1,4");
+			condition.put("roleTypeId", 2);
 			//待查询的partyId
 			condition.put("partyId", partyId);
 			List pgList = partyGroupDao.getPartyGroupFromRS(condition);
@@ -164,5 +165,10 @@ public class PartyGroupManagerImpl extends GenericManagerImpl<PartyGroup, Long> 
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List getZhiBuByCondition(Map condition) {
+		return partyGroupDao.getZhiBuByCondition(condition);
 	}
 }
